@@ -1,0 +1,29 @@
+.contact-wrapper {
+    padding: 10px;
+    display: flex;
+    max-width: 500px;
+    /* justify-content: center; */
+    align-items: center;
+    background-color: rgb(179, 183, 184);
+    border-radius: 50px;
+    margin: 10px auto;
+}
+
+.contact-wrapper div {
+    padding: 5px;
+}
+
+.name, .phone {
+    padding: 5px;
+    width: 200px;
+    display: flex;
+}
+
+.gender-icon {
+    width: 20px;
+}
+
+.check-box-wrapper {
+    display: flex;
+    justify-content: center;
+}
