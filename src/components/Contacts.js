@@ -36,7 +36,6 @@ state = {
 			gender: "male"
 	}
 	],
-	filtred: [],
 	search: "",
 	male: 'male',
 	female: 'female',
@@ -52,10 +51,10 @@ displayContacts = () => {
 	const contactsArr = this.state.contacts;
 	const inputValue = this.state.search;
 	
-	const filtredByGender = contactsArr.filter((c) => {
-	return	c.gender === this.state.male ||
-		c.gender === this.state.female ||
-		(!c.gender && this.state.others);
+	const filtredByGender = contactsArr.filter((contact) => {
+		return	contact.gender === this.state.male ||
+		contact.gender === this.state.female ||
+		(!contact.gender && this.state.others);
 	});
 
 	if (!inputValue) {
@@ -73,29 +72,9 @@ displayContacts = () => {
 	}
 };
 
-filtredByGenderM = (e) => {
-	if(e.target.checked){
-		this.setState({male: e.target.id});
-	}else {
-		this.setState({male: ""});
-	}
-};
-
-filtredByGenderF = (e) => {
-	if(e.target.checked){
-		this.setState({female: e.target.id});
-	}else {
-		this.setState({female: ""});
-	}
-};
-
-filtredByGenderO = (e) => {
-	if(e.target.checked){
-		this.setState({others: true});
-	}else {
-		this.setState({others: ""});
-	}
-};
+filtredByGenderM = (e) => {this.setState({male: e.target.checked ? e.target.id :""})};
+filtredByGenderF = (e) => {this.setState({female: e.target.checked ? e.target.id :""})};
+filtredByGenderO = (e) => {this.setState({others: e.target.checked ? e.target.id :""})};
 
 render() {
 	return(
@@ -103,23 +82,36 @@ render() {
 			<h1>Contacts</h1>
 			<div className="check-box-wrapper">
 				<div>
-					<input checked={this.state.male} type="checkbox" id="male" 
-					onChange={this.filtredByGenderM}/>
+					<input 
+						checked={this.state.male} 
+						type="checkbox" id="male" 
+						onChange={this.filtredByGenderM}
+					/>
 					<label>Male</label>
 				</div>
 				<div>
-					<input checked={this.state.female} type="checkbox" id="female" 
-					onChange={this.filtredByGenderF}/>
+					<input 
+						checked={this.state.female} 
+						type="checkbox" id="female" 
+						onChange={this.filtredByGenderF}
+					/>
 					<label>Female</label>
 				</div>
 				<div>
-					<input checked={this.state.others} type="checkbox" id="others" 
-					onChange={this.filtredByGenderO}/>
+					<input 
+						checked={this.state.others} 
+						type="checkbox" 
+						id="others" 
+						onChange={this.filtredByGenderO}
+					/>
 					<label>Others</label>
 				</div>
 			</div>
-			<input type="text" value={this.state.search} onChange={this.handleSearchChange}></input>
-
+			<input 
+				type="text" 
+				value={this.state.search} 
+				onChange={this.handleSearchChange}
+			/>
 			{this.displayContacts()}
 
 		</div>
